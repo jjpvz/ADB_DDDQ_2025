@@ -32,7 +32,6 @@ Predicate: <song_name> van <artist_name> is uitgebracht in <release_year>
 
 
 // TODO: Artiest opslaan of aparte entiteit?
-// TODO: Wat kunnen de koppeltekens zijn die onderscheid aangeven tussen artiest en featuring artiesten?
 Aan Somebody To Love van George Michael wordt meegewerkt door Queen. 
 Aan All For Love van Bryan Adams wordt meegewerkt door Rod Stewart. 
 Aan All For Love van Bryan Adams wordt meegewerkt door Sting.
