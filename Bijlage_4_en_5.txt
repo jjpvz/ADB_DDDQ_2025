@@ -1,0 +1,69 @@
+Bijlage 4 Hitnoteringen:
+
+Fact types with two components
+FT1 - Artist of a song
+The song "-------" is by the band "-------" .
+The song Seven Nation Army is by the band The White Stripes.
+The song Clint Eastwood is by the band Gorillaz.
+	   ET: Song			   ET: Artist	
+	   Match			   Match	
+RT: 
+Predicate:
+
+Fact types with three components
+FT2 - Highest reached position of a song in a specific ranking
+The song “-----------------------------------” reached its highest position “---”  on the “----------”.
+The song Seven Nation Army by The White Stripes reached its highest position 22 on the NL Top 40.
+The song Seven Nation Army by The White Stripes reached its highest position 7 on the UK Singles Chart.
+The song Seven Nation Army by The White Stripes reached its highest position 75 on the USA Billboard Hot 100.
+The song Clint Eastwood by Gorillaz reached its highest position 27 on the NL Top 40.
+The song Clint Eastwood by Gorillaz reached its highest position 4 on the UK Singles Chart.
+The song Clint Eastwood by Gorillaz reached its highest position 57 on the USA Billboard Hot 100.
+	 ET Song + ET Artist				att: ChartRanking	ET: Charts
+
+
+FT3 - Duration of a song in a specific ranking
+The song “-----------------------------------” stayed on the “----------------------------” for “----------”.
+The song Seven Nation Army by The White Stripes stayed on the NL Top 40 for 5 weeks.
+The song Seven Nation Army by The White Stripes stayed on the UK Singles Chart for 9 weeks.
+The song Seven Nation Army by The White Stripes stayed on the USA Billboard Hot 100 for 1 week.
+The song Clint Eastwood by Gorillaz stayed on the NL Top 40 for 6 weeks.
+The song Clint Eastwood by Gorillaz stayed on the UK Singles Chart for 17 weeks.
+The song Clint Eastwood by Gorillaz stayed on the USA Billboard Hot 100 for 11 weeks.
+		ET: Song				ET: Charts 
+Match
+
+
+
+Bijlagen 5 Top 10 per gemeente:
+
+Dit is een postulerend feit type.
+FT1
+There is a Top 10 ranking for the municipality of Arnhem.
+There is a Top 10 ranking for the municipality of Lingewaard.
+There is a Top 10 ranking for the municipality of Renkum.
+	ET Top	10 Ranking			ET: Municipality
+						ID: municipality_code 
+
+FT2
+The song Bohemian Rhapsody by Queen reached its highest position 1 on the Top 10 ranking of Arnhem in 2019.
+The song Hotel California by Eagles reached its highest position 2 on the Top 10 ranking of Arnhem in 2019.
+The song Piano Man by Billy Joel reached its highest position 3 on the Top 10 ranking of Arnhem in 2019.
+
+
+
+FT3
+The song Bohemian Rhapsody by Queen received 15% of all the votes in municipality Arnhem.
+The song Hotel California by Eagles received 10% of all the votes in Arnhem.
+The song Piano Man by Billy Joel received 9% of all the votes in Arnhem.
+
+FT4
+The postcode 6833 belongs to the municipality Arnhem and the place Arnhem.
+The postcode 6850 belongs to the municipality Lingewaard and the place Huissen.
+The postcode 6860 belongs to the municipality Renkum and the place Oosterbeek.
+The postcode 6874 belongs to the municipality Renkum and the place Wolfheze.
+					ET:Municipality	  ET: Place
+					Match			  ID:place_name + ET Municipality
+
+
+Ik mis alleen bij postcode de 2 letters?
