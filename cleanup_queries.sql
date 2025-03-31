@@ -54,10 +54,18 @@ CREATE TABLE Top2000_cleaned.dbo.SongFeaturedArtist (
 	song_titel NVARCHAR(255) NOT NULL,
 	artist NVARCHAR(255) NOT NULL,
 	featured_artist NVARCHAR(255) NOT NULL,
-	PRIMARY KEY (song_titel, artist),
-	FOREIGN KEY (song_titel, artist) REFERENCES Top2000_cleaned.dbo.Song(titel, artist)
+	PRIMARY KEY (song_titel, artist)
 )
 GO
+
+-- ALTER TABLE Top2000_cleaned.dbo.SongFeaturedArtist DROP CONSTRAINT FK_SongFeaturedArtist_Song 
+ALTER TABLE Top2000_cleaned.dbo.SongFeaturedArtist 
+ADD CONSTRAINT FK_SongFeaturedArtist_Song 
+FOREIGN KEY (song_titel, artist) 
+REFERENCES Top2000_cleaned.dbo.Song(titel, artist) 
+ON UPDATE CASCADE
+GO
+
 
 -- Zet alle featured artiesten over
 -- SELECT * FROM Top2000_cleaned.dbo.SongFeaturedArtist
@@ -105,16 +113,34 @@ CREATE TABLE Top2000_cleaned.dbo.SongComponist (
 	artist NVARCHAR(255) NOT NULL,
 	componist_name NVARCHAR(255) NOT NULL,
 
-	PRIMARY KEY (titel, artist, componist_name),
-	CONSTRAINT FK_SongComponist_Song FOREIGN KEY (titel, artist) REFERENCES Top2000_cleaned.dbo.Song(titel, artist),
-	CONSTRAINT FK_SongComponist_Componist FOREIGN KEY (componist_name) REFERENCES Top2000_cleaned.dbo.Componist(componist_name)
+	PRIMARY KEY (titel, artist, componist_name)
 )
+GO
+
+-- ALTER TABLE Top2000_cleaned.dbo.SongComponist DROP CONSTRAINT FK_SongComponist_Song 
+ALTER TABLE Top2000_cleaned.dbo.SongComponist
+ADD CONSTRAINT FK_SongComponist_Song 
+FOREIGN KEY (titel, artist) 
+REFERENCES Top2000_cleaned.dbo.Song(titel, artist) 
+ON UPDATE CASCADE
+GO
+
+-- ALTER TABLE Top2000_cleaned.dbo.SongComponist DROP CONSTRAINT FK_SongComponist_Componist 
+ALTER TABLE Top2000_cleaned.dbo.SongComponist
+ADD CONSTRAINT FK_SongComponist_Componist 
+FOREIGN KEY (componist_name) 
+REFERENCES Top2000_cleaned.dbo.Componist(componist_name)
+ON UPDATE CASCADE
 GO
 
 INSERT INTO Top2000_cleaned.dbo.SongComponist (titel, artist, componist_name)
 SELECT titel, artist, TRIM(s.value) as componist_name
 FROM Top2000_cleaned.dbo.Song
 CROSS APPLY string_split(old_componist, ',') s
+GO
+
+ALTER TABLE Top2000_cleaned.dbo.Song
+DROP COLUMN old_componist
 GO
 
 
@@ -191,16 +217,20 @@ FROM Top2000_cleaned.dbo.SongGenre
 GO
 
 -- Zet foreign key op Top2000_cleaned.dbo.SongGenre
+-- ALTER TABLE Top2000_cleaned.dbo.SongGenre DROP CONSTRAINT FK_SongGenre_Genre
 ALTER TABLE Top2000_cleaned.dbo.SongGenre
 ADD CONSTRAINT FK_SongGenre_Genre
 FOREIGN KEY (genre)
 REFERENCES Top2000_cleaned.dbo.Genre (genre_name)
+ON UPDATE CASCADE
 GO
 
+-- ALTER TABLE Top2000_cleaned.dbo.SongGenre DROP CONSTRAINT FK_SongGenre_Song
 ALTER TABLE Top2000_cleaned.dbo.SongGenre
 ADD CONSTRAINT FK_SongGenre_Song
 FOREIGN KEY (titel, artist)
 REFERENCES Top2000_cleaned.dbo.Song (titel, artist)
+ON UPDATE CASCADE
 GO
 
 
@@ -213,9 +243,16 @@ CREATE TABLE Top2000_cleaned.dbo.Top2000Lijst (
 	titel NVARCHAR(255) NOT NULL,
 	artist NVARCHAR(255) NOT NULL,
 
-	PRIMARY KEY (edition_year, position),
-	CONSTRAINT FK_Top2000Lijst_Song FOREIGN KEY (titel, artist) REFERENCES Top2000_cleaned.dbo.Song (titel, artist)
+	PRIMARY KEY (edition_year, position)
 )
+GO
+
+-- ALTER TABLE Top2000_cleaned.dbo.Top2000Lijst DROP CONSTRAINT FK_Top2000Lijst_Song 
+ALTER TABLE Top2000_cleaned.dbo.Top2000Lijst
+ADD CONSTRAINT FK_Top2000Lijst_Song 
+FOREIGN KEY (titel, artist) 
+REFERENCES Top2000_cleaned.dbo.Song (titel, artist)
+ON UPDATE CASCADE
 GO
 
 INSERT INTO Top2000_cleaned.dbo.Top2000Lijst (edition_year, position, titel, artist)
