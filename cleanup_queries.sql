@@ -137,7 +137,7 @@ CREATE TABLE Top2000_cleaned.dbo.Artist (
 )
 GO
 
--- Haal alle artiesten op die geen duo zijn of band. Maar wel samenwerkings verband hebben
+-- [SQSQL1] Haal alle artiesten op die geen duo zijn of band. Maar wel samenwerkings verband hebben
 INSERT INTO Top2000_cleaned.dbo.Artist (artist_name)
 	SELECT DISTINCT TRIM(CHAR(160) FROM TRIM(value))  as Artiest
 	FROM Top2000.dbo.Song as S
@@ -146,7 +146,7 @@ INSERT INTO Top2000_cleaned.dbo.Artist (artist_name)
 	WHERE A.artist_name is NULL
 GO
 
--- Haal bands/vaste duo's op.
+-- [SQSQL2] Haal bands/vaste duo's op.
 INSERT INTO Top2000_cleaned.dbo.Artist (artist_name)
 SELECT DISTINCT S.Artiest
 FROM Top2000.dbo.Song as S
@@ -176,7 +176,7 @@ FOREIGN KEY (artist) REFERENCES Top2000_cleaned.dbo.Artist(artist_name)
 ON UPDATE CASCADE
 GO
 
--- Kopieer alle songs met dat geen band of duo is naar Song en haal de hoofd artiest eruit.
+-- [SQSQL3] Kopieer alle songs met dat geen band of duo is naar Song en haal de hoofd artiest eruit.
 INSERT INTO Top2000_cleaned.dbo.Song (titel, release_year, duration, old_componist, artist)
 SELECT S.titel as titel, S.Jaar as release_year, S.Speelduur as duration, S.Componist as old_componist,
 	TRIM(CHAR(160) FROM
@@ -193,7 +193,7 @@ LEFT JOIN Top2000_cleaned.dbo.ampersand_artists as A ON S.Artiest = A.artist_nam
 WHERE A.artist_name is NULL
 GO
 
--- Kopieer alle songs van vaste duo's of bands
+-- [SQSQL4] Kopieer alle songs van vaste duo's of bands
 INSERT INTO Top2000_cleaned.dbo.Song (titel, release_year, duration, old_componist, artist)
 SELECT S.titel as titel, S.Jaar as release_year, S.Speelduur as duration, S.Componist as old_componist, S.Artiest as artist
 FROM Top2000.dbo.Song as S
@@ -221,7 +221,7 @@ ON UPDATE CASCADE
 GO
 
 
--- Zet alle featured artiesten over
+-- [CQSQL5] Zet alle featured artiesten over
 -- SELECT * FROM Top2000_cleaned.dbo.SongFeaturedArtist
 -- TRUNCATE TABLE Top2000_cleaned.dbo.SongFeaturedArtist
 INSERT INTO Top2000_cleaned.dbo.SongFeaturedArtist (song_titel, artist, featured_artist)
@@ -261,7 +261,7 @@ CREATE TABLE Top2000_cleaned.dbo.Componist (
 )
 GO
 
--- Haal alle unieke componisten op uit Top2000
+-- [CQSQL6] Haal alle unieke componisten op uit Top2000
 INSERT INTO Top2000_cleaned.dbo.Componist (componist_name)
 SELECT DISTINCT TRIM(value) as componist_name
 FROM Top2000_cleaned.dbo.Song
@@ -296,6 +296,7 @@ REFERENCES Top2000_cleaned.dbo.Componist(componist_name)
 ON UPDATE CASCADE
 GO
 
+-- [CQSQL7] Componisten weer koppelen aan de song waar zij bij horen
 INSERT INTO Top2000_cleaned.dbo.SongComponist (titel, artist, componist_name)
 SELECT titel, artist, TRIM(s.value) as componist_name
 FROM Top2000_cleaned.dbo.Song
@@ -319,7 +320,7 @@ CREATE TABLE Top2000_cleaned.dbo.SongGenre (
 )
 GO
 
--- Insert Alle genres voor losse artiesten en songs met featured artiesten
+-- [CQSQL8] Insert Alle genres voor losse artiesten en songs met featured artiesten
 INSERT INTO Top2000_cleaned.dbo.SongGenre (titel, genre, artist)
 SELECT S.titel, SG.genre,
 	TRIM(CHAR(160) FROM
@@ -337,7 +338,7 @@ LEFT JOIN Top2000_cleaned.dbo.ampersand_artists as A ON S.Artiest = A.artist_nam
 WHERE A.artist_name is NULL
 GO
 
--- Insert alle genres van bands en vaste duo's
+-- [CQSQL9] Insert alle genres van bands en vaste duo's
 INSERT INTO Top2000_cleaned.dbo.SongGenre (titel, genre, artist)
 SELECT S.titel, SG.genre, S.Artiest as artist
 FROM Top2000.dbo.Song as S
@@ -351,31 +352,37 @@ SELECT DISTINCT genre
 FROM Top2000_cleaned.dbo.SongGenre
 GO
 
+-- [CQSQL10]
 UPDATE Top2000_cleaned.dbo.SongGenre
 SET genre = 'alternatieve rock'
 WHERE genre = 'allternatieve rock' OR genre = 'alternative rock'
 GO
 
+-- [CQSQL11]
 UPDATE Top2000_cleaned.dbo.SongGenre
 SET genre = 'elektronische muziek'
 WHERE genre = 'elketronische muziek'
 GO
 
+-- [CQSQL12]
 UPDATE Top2000_cleaned.dbo.SongGenre
 SET genre = 'Keltische rock'
 WHERE genre = 'Celtic rock'
 GO
 
+-- [CQSQL13]
 UPDATE Top2000_cleaned.dbo.SongGenre
 SET genre = 'psychedelische rock'
 WHERE genre = 'psychedelic rock'
 GO
 
+-- [CQSQL14]
 UPDATE Top2000_cleaned.dbo.SongGenre
 SET genre = 'rock-''n-roll'
 WHERE genre = 'rock-''n -roll'
 GO
 
+-- [CQSQL15]
 UPDATE Top2000_cleaned.dbo.SongGenre
 SET genre = 'trash metal'
 WHERE genre = 'trashmetal'
@@ -390,6 +397,7 @@ CREATE TABLE Top2000_cleaned.dbo.Genre (
 )
 GO
 
+-- [CQSQL16]
 INSERT INTO Top2000_cleaned.dbo.Genre (genre_name)
 SELECT DISTINCT genre
 FROM Top2000_cleaned.dbo.SongGenre
@@ -434,6 +442,7 @@ REFERENCES Top2000_cleaned.dbo.Song (titel, artist)
 ON UPDATE CASCADE
 GO
 
+-- [CQSQL17]
 INSERT INTO Top2000_cleaned.dbo.Top2000Lijst (edition_year, position, titel, artist)
 SELECT editiejaar as edition_year, positie as position, L.Titel as titel,
 	TRIM(CHAR(160) FROM
@@ -451,18 +460,10 @@ LEFT JOIN Top2000_cleaned.dbo.ampersand_artists as A ON S.Artiest = A.artist_nam
 WHERE A.artist_name is NULL
 GO
 
+-- [CQSQL18]
 INSERT INTO Top2000_cleaned.dbo.Top2000Lijst (edition_year, position, titel, artist)
 SELECT editiejaar as edition_year, positie as position, L.Titel as titel, S.artiest
 FROM Top2000.dbo.Top2000Lijst as L
 INNER JOIN Top2000.dbo.Song as S ON L.Artiest = S.Artiest and L.Titel = S.titel
 INNER JOIN Top2000_cleaned.dbo.ampersand_artists as A ON S.Artiest = A.artist_name
 GO
-
---SELECT editiejaar as edition_year, positie as position, L.Titel as titel, L.Artiest
---FROM Top2000.dbo.Top2000Lijst as L
---FULL JOIN Top2000.dbo.Song as S ON L.Artiest = S.Artiest and L.Titel = S.titel
---WHERE S.Artiest IS NULL
-
-
--- Wat doen we met songs die niet in Song staan maar wel in Top2000
--- Wat doen we met songs die niet in Song staan maar wel in SongGenre
