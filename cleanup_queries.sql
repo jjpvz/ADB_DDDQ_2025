@@ -208,7 +208,7 @@ CREATE TABLE Top2000_cleaned.dbo.SongFeaturedArtist (
 	song_titel NVARCHAR(255) NOT NULL,
 	artist NVARCHAR(255) NOT NULL,
 	featured_artist NVARCHAR(255) NOT NULL,
-	PRIMARY KEY (song_titel, artist)
+	PRIMARY KEY (song_titel, artist, featured_artist)
 )
 GO
 
@@ -219,7 +219,6 @@ FOREIGN KEY (song_titel, artist)
 REFERENCES Top2000_cleaned.dbo.Song(titel, artist) 
 ON UPDATE CASCADE
 GO
-
 
 -- [CQSQL5] Zet alle featured artiesten over
 -- SELECT * FROM Top2000_cleaned.dbo.SongFeaturedArtist
@@ -252,6 +251,26 @@ FROM (
 ) sub
 WHERE featured_artist IS NOT NULL
 GO
+
+INSERT INTO Top2000_cleaned.dbo.SongFeaturedArtist
+SELECT FA.song_titel, FA.artist, TRIM(CHAR(160) FROM TRIM(value)) as featured_artist
+FROM Top2000_cleaned.dbo.SongFeaturedArtist as FA
+CROSS APPLY string_split(FA.featured_artist, '&')
+LEFT JOIN Top2000_cleaned.dbo.Artist as MA ON MA.artist_name = FA.featured_artist
+WHERE MA.artist_name IS NULL
+GO
+
+DELETE SFA
+FROM Top2000_cleaned.dbo.SongFeaturedArtist as SFA
+JOIN (
+	SELECT FA.song_titel, FA.artist, FA.featured_artist
+	FROM Top2000_cleaned.dbo.SongFeaturedArtist as FA
+	LEFT JOIN Top2000_cleaned.dbo.Artist as MA ON MA.artist_name = FA.featured_artist
+	WHERE MA.artist_name IS NULL
+) sub
+ON SFA.artist = sub.artist AND SFA.featured_artist = sub.featured_artist AND SFA.song_titel = sub.song_titel
+GO
+
 
 
 -- Maak tabel aan voor alle componisten
