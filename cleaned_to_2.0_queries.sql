@@ -34,7 +34,7 @@ FROM Top2000_cleaned.dbo.SongGenre
 GO
 
 INSERT INTO [Top2000_2.0].dbo.ARTIST (ARTIST_NAME, ARTIST_TYPE)
-SELECT componist_name as ARTIST_NAME, 'componist' as ARTIST_TYPE
+SELECT componist_name as ARTIST_NAME, 'person' as ARTIST_TYPE
 FROM Top2000_cleaned.dbo.Componist
 LEFT JOIN [Top2000_2.0].dbo.ARTIST AS ARTIST ON ARTIST.ARTIST_NAME = componist_name
 WHERE ARTIST.ARTIST_NAME IS NULL
@@ -54,3 +54,14 @@ INSERT INTO [Top2000_2.0].dbo.COMPOSEROFSONG (SON_ARTIST_NAME, SONG_NAME, ARTIST
 SELECT artist as SON_ARTIST_NAME, titel as SONG_NAME, componist_name as ARTIST_NAME, componist_name as PERSON_NAME
 FROM Top2000_cleaned.dbo.SongComponist
 GO
+
+UPDATE A
+SET ARTIST_TYPE = 'band'
+FROM [Top2000_2.0].dbo.ARTIST A
+JOIN (
+	SELECT ARTIST.*
+	FROM [Top2000_2.0].dbo.ARTIST as ARTIST
+	INNER JOIN Top2000_cleaned.dbo.ampersand_artists as ampersand_artists ON ampersand_artists.artist_name = ARTIST.ARTIST_NAME
+) sub ON A.ARTIST_NAME = sub.artist_name AND A.ARTIST_TYPE = sub.ARTIST_TYPE
+GO
+

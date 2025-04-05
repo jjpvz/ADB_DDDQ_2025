@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2008                    */
-/* Created on:     05/04/2025 11:15:21                          */
+/* Created on:     05/04/2025 11:41:14                          */
 /*==============================================================*/
 
 
@@ -754,6 +754,7 @@ create table COMPOSER (
    ARTIST_NAME          nvarchar(255)        not null,
    PERSON_NAME          nvarchar(255)        not null,
    BIRTH_DAY            date                 null,
+   DEATH_YEAR           char(10)             null,
    constraint PK_COMPOSER primary key (ARTIST_NAME, PERSON_NAME)
 )
 go
@@ -941,6 +942,7 @@ create table PERSON (
    ARTIST_NAME          nvarchar(255)        not null,
    PERSON_NAME          nvarchar(255)        not null,
    BIRTH_DAY            date                 null,
+   DEATH_YEAR           int                  null,
    constraint PK_PERSON primary key nonclustered (ARTIST_NAME, PERSON_NAME)
 )
 go
@@ -996,6 +998,7 @@ create table SOLOARTIST (
    ARTIST_NAME          nvarchar(255)        not null,
    PERSON_NAME          nvarchar(255)        not null,
    BIRTH_DAY            date                 null,
+   DEATH_YEAR           char(10)             null,
    constraint PK_SOLOARTIST primary key (ARTIST_NAME, PERSON_NAME)
 )
 go
