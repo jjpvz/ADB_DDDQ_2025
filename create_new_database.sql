@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2008                    */
-/* Created on:     05/04/2025 10:03:51                          */
+/* Created on:     05/04/2025 11:15:21                          */
 /*==============================================================*/
 
 
@@ -753,7 +753,7 @@ go
 create table COMPOSER (
    ARTIST_NAME          nvarchar(255)        not null,
    PERSON_NAME          nvarchar(255)        not null,
-   BIRTH_DAY            date                 not null,
+   BIRTH_DAY            date                 null,
    constraint PK_COMPOSER primary key (ARTIST_NAME, PERSON_NAME)
 )
 go
@@ -940,7 +940,7 @@ go
 create table PERSON (
    ARTIST_NAME          nvarchar(255)        not null,
    PERSON_NAME          nvarchar(255)        not null,
-   BIRTH_DAY            date                 not null,
+   BIRTH_DAY            date                 null,
    constraint PK_PERSON primary key nonclustered (ARTIST_NAME, PERSON_NAME)
 )
 go
@@ -995,7 +995,7 @@ go
 create table SOLOARTIST (
    ARTIST_NAME          nvarchar(255)        not null,
    PERSON_NAME          nvarchar(255)        not null,
-   BIRTH_DAY            date                 not null,
+   BIRTH_DAY            date                 null,
    constraint PK_SOLOARTIST primary key (ARTIST_NAME, PERSON_NAME)
 )
 go
@@ -1006,8 +1006,8 @@ go
 create table SONG (
    ARTIST_NAME          nvarchar(255)        not null,
    SONG_NAME            nvarchar(255)        not null,
-   DURATION_IN_WEEKS    int                  not null,
-   RELEASE_YEAR         int                  not null,
+   DURATION             time(0)              null,
+   RELEASE_YEAR         int                  null,
    constraint PK_SONG primary key nonclustered (ARTIST_NAME, SONG_NAME)
 )
 go
@@ -1049,7 +1049,7 @@ create table SONGONCHART (
    ARTIST_NAME          nvarchar(255)        not null,
    SONG_NAME            nvarchar(255)        not null,
    CHART_NAME           nvarchar(255)        not null,
-   DURATION_IN_WEEKS    int                  not null,
+   DURATION             int                  not null,
    SEDFESFSEFSEF        int                  not null,
    constraint PK_SONGONCHART primary key (ARTIST_NAME, SONG_NAME, CHART_NAME)
 )
@@ -1316,14 +1316,11 @@ go
 alter table SOLOARTIST
    add constraint FK_SOLOARTI_IS_A_PERS_PERSON foreign key (ARTIST_NAME, PERSON_NAME)
       references PERSON (ARTIST_NAME, PERSON_NAME)
-         on update no action
-		 on delete no action
 go
 
 alter table SONG
    add constraint FK_SONG_SONGOFART_ARTIST foreign key (ARTIST_NAME)
       references ARTIST (ARTIST_NAME)
-         on update no action
 go
 
 alter table SONGNOTONSTANDARDLIST
