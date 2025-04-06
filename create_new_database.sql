@@ -1,232 +1,8 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2008                    */
-/* Created on:     05/04/2025 11:41:14                          */
+/* Created on:     06/04/2025 11:10:28                          */
 /*==============================================================*/
 
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('BAND') and o.name = 'FK_BAND_BANDCOUNT_COUNTRY')
-alter table BAND
-   drop constraint FK_BAND_BANDCOUNT_COUNTRY
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('BAND') and o.name = 'FK_BAND_IS_A_ARTI_ARTIST')
-alter table BAND
-   drop constraint FK_BAND_IS_A_ARTI_ARTIST
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('BANDMEMBERSHIP') and o.name = 'FK_BANDMEMB_BANDMEMBE_SOLOARTI')
-alter table BANDMEMBERSHIP
-   drop constraint FK_BANDMEMB_BANDMEMBE_SOLOARTI
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('BANDMEMBERSHIP') and o.name = 'FK_BANDMEMB_BANDMEMBE_BAND')
-alter table BANDMEMBERSHIP
-   drop constraint FK_BANDMEMB_BANDMEMBE_BAND
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('CHART') and o.name = 'FK_CHART_COUNTRYOF_COUNTRY')
-alter table CHART
-   drop constraint FK_CHART_COUNTRYOF_COUNTRY
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('COMPOSER') and o.name = 'FK_COMPOSER_IS_A_PERS_PERSON')
-alter table COMPOSER
-   drop constraint FK_COMPOSER_IS_A_PERS_PERSON
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('COMPOSEROFSONG') and o.name = 'FK_COMPOSER_COMPOSERO_SONG')
-alter table COMPOSEROFSONG
-   drop constraint FK_COMPOSER_COMPOSERO_SONG
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('COMPOSEROFSONG') and o.name = 'FK_COMPOSER_COMPOSERO_COMPOSER')
-alter table COMPOSEROFSONG
-   drop constraint FK_COMPOSER_COMPOSERO_COMPOSER
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('DJINYEAR') and o.name = 'FK_DJINYEAR_DJOFDJINY_DJ')
-alter table DJINYEAR
-   drop constraint FK_DJINYEAR_DJOFDJINY_DJ
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('DJINYEAR') and o.name = 'FK_DJINYEAR_DJOFTOP20_TOP2000L')
-alter table DJINYEAR
-   drop constraint FK_DJINYEAR_DJOFTOP20_TOP2000L
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('FEATURINGARTISTOFSONG') and o.name = 'FK_FEATURIN_FEATURING_SONG')
-alter table FEATURINGARTISTOFSONG
-   drop constraint FK_FEATURIN_FEATURING_SONG
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('FEATURINGARTISTOFSONG') and o.name = 'FK_FEATURIN_FEATURING_ARTIST')
-alter table FEATURINGARTISTOFSONG
-   drop constraint FK_FEATURIN_FEATURING_ARTIST
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('GENREOFSONG') and o.name = 'FK_GENREOFS_GENREOFSO_GENRE')
-alter table GENREOFSONG
-   drop constraint FK_GENREOFS_GENREOFSO_GENRE
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('GENREOFSONG') and o.name = 'FK_GENREOFS_GENREOFSO_SONG')
-alter table GENREOFSONG
-   drop constraint FK_GENREOFS_GENREOFSO_SONG
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('LISTENER') and o.name = 'FK_LISTENER_POSTALCOD_POSTALCO')
-alter table LISTENER
-   drop constraint FK_LISTENER_POSTALCOD_POSTALCO
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('PERSON') and o.name = 'FK_PERSON_IS_A_ARTI_ARTIST')
-alter table PERSON
-   drop constraint FK_PERSON_IS_A_ARTI_ARTIST
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('POSTALCODE') and o.name = 'FK_POSTALCO_POSTALCOD_MUNICIPA')
-alter table POSTALCODE
-   drop constraint FK_POSTALCO_POSTALCOD_MUNICIPA
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('POSTALCODE') and o.name = 'FK_POSTALCO_POSTALCOD_PLACE')
-alter table POSTALCODE
-   drop constraint FK_POSTALCO_POSTALCOD_PLACE
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('SOLOARTIST') and o.name = 'FK_SOLOARTI_IS_A_PERS_PERSON')
-alter table SOLOARTIST
-   drop constraint FK_SOLOARTI_IS_A_PERS_PERSON
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('SONG') and o.name = 'FK_SONG_SONGOFART_ARTIST')
-alter table SONG
-   drop constraint FK_SONG_SONGOFART_ARTIST
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('SONGNOTONSTANDARDLIST') and o.name = 'FK_SONGNOTO_VOTELISTS_VOTELIST')
-alter table SONGNOTONSTANDARDLIST
-   drop constraint FK_SONGNOTO_VOTELISTS_VOTELIST
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('SONGONCHART') and o.name = 'FK_SONGONCH_CHARTOFSO_CHART')
-alter table SONGONCHART
-   drop constraint FK_SONGONCH_CHARTOFSO_CHART
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('SONGONCHART') and o.name = 'FK_SONGONCH_SONGOFSON_SONG')
-alter table SONGONCHART
-   drop constraint FK_SONGONCH_SONGOFSON_SONG
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('SONGONTOP10LIST') and o.name = 'FK_SONGONTO_SONGOFSON_SONG')
-alter table SONGONTOP10LIST
-   drop constraint FK_SONGONTO_SONGOFSON_SONG
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('SONGONTOP10LIST') and o.name = 'FK_SONGONTO_TOP10LIST_TOP10LIS')
-alter table SONGONTOP10LIST
-   drop constraint FK_SONGONTO_TOP10LIST_TOP10LIS
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('TOP10LIST') and o.name = 'FK_TOP10LIS_MUNICIPAL_MUNICIPA')
-alter table TOP10LIST
-   drop constraint FK_TOP10LIS_MUNICIPAL_MUNICIPA
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('TOP10LIST') and o.name = 'FK_TOP10LIS_TOP2000LI_TOP2000L')
-alter table TOP10LIST
-   drop constraint FK_TOP10LIS_TOP2000LI_TOP2000L
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('TOP2000LISTENTRY') and o.name = 'FK_TOP2000L_EDITIONOF_TOP2000L')
-alter table TOP2000LISTENTRY
-   drop constraint FK_TOP2000L_EDITIONOF_TOP2000L
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('TOP2000LISTENTRY') and o.name = 'FK_TOP2000L_SONGOFTOP_SONG')
-alter table TOP2000LISTENTRY
-   drop constraint FK_TOP2000L_SONGOFTOP_SONG
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('VOTELISTENTRY') and o.name = 'FK_VOTELIST_LISTENERV_LISTENER')
-alter table VOTELISTENTRY
-   drop constraint FK_VOTELIST_LISTENERV_LISTENER
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('VOTELISTENTRY') and o.name = 'FK_VOTELIST_TOP2000LI_TOP2000L')
-alter table VOTELISTENTRY
-   drop constraint FK_VOTELIST_TOP2000LI_TOP2000L
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('VOTELISTENTRY') and o.name = 'FK_VOTELIST_VOTELISTS_SONG')
-alter table VOTELISTENTRY
-   drop constraint FK_VOTELIST_VOTELISTS_SONG
-go
 
 if exists (select 1
             from  sysobjects
@@ -290,13 +66,6 @@ if exists (select 1
            where  id = object_id('CHART')
             and   type = 'U')
    drop table CHART
-go
-
-if exists (select 1
-            from  sysobjects
-           where  id = object_id('COMPOSER')
-            and   type = 'U')
-   drop table COMPOSER
 go
 
 if exists (select 1
@@ -445,11 +214,27 @@ go
 
 if exists (select 1
             from  sysindexes
-           where  id    = object_id('PERSON')
-            and   name  = 'IS_A_ARTIST2_FK'
+           where  id    = object_id('NOTSTANDARDSONGOFVOTELIST')
+            and   name  = 'NOTSTANDARDSONGOFVOTELIST2_FK'
             and   indid > 0
             and   indid < 255)
-   drop index PERSON.IS_A_ARTIST2_FK
+   drop index NOTSTANDARDSONGOFVOTELIST.NOTSTANDARDSONGOFVOTELIST2_FK
+go
+
+if exists (select 1
+            from  sysindexes
+           where  id    = object_id('NOTSTANDARDSONGOFVOTELIST')
+            and   name  = 'NOTSTANDARDSONGOFVOTELIST_FK'
+            and   indid > 0
+            and   indid < 255)
+   drop index NOTSTANDARDSONGOFVOTELIST.NOTSTANDARDSONGOFVOTELIST_FK
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('NOTSTANDARDSONGOFVOTELIST')
+            and   type = 'U')
+   drop table NOTSTANDARDSONGOFVOTELIST
 go
 
 if exists (select 1
@@ -492,13 +277,6 @@ if exists (select 1
 go
 
 if exists (select 1
-            from  sysobjects
-           where  id = object_id('SOLOARTIST')
-            and   type = 'U')
-   drop table SOLOARTIST
-go
-
-if exists (select 1
             from  sysindexes
            where  id    = object_id('SONG')
             and   name  = 'SONGOFARTIST_FK'
@@ -515,19 +293,35 @@ if exists (select 1
 go
 
 if exists (select 1
-            from  sysindexes
-           where  id    = object_id('SONGNOTONSTANDARDLIST')
-            and   name  = 'VOTELISTSONGNOTONSTANDARDLISTENTRY_FK'
-            and   indid > 0
-            and   indid < 255)
-   drop index SONGNOTONSTANDARDLIST.VOTELISTSONGNOTONSTANDARDLISTENTRY_FK
-go
-
-if exists (select 1
             from  sysobjects
            where  id = object_id('SONGNOTONSTANDARDLIST')
             and   type = 'U')
    drop table SONGNOTONSTANDARDLIST
+go
+
+if exists (select 1
+            from  sysindexes
+           where  id    = object_id('SONGOFVOTE')
+            and   name  = 'SONGOFVOTE2_FK'
+            and   indid > 0
+            and   indid < 255)
+   drop index SONGOFVOTE.SONGOFVOTE2_FK
+go
+
+if exists (select 1
+            from  sysindexes
+           where  id    = object_id('SONGOFVOTE')
+            and   name  = 'SONGOFVOTE_FK'
+            and   indid > 0
+            and   indid < 255)
+   drop index SONGOFVOTE.SONGOFVOTE_FK
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('SONGOFVOTE')
+            and   type = 'U')
+   drop table SONGOFVOTE
 go
 
 if exists (select 1
@@ -639,36 +433,27 @@ go
 
 if exists (select 1
             from  sysindexes
-           where  id    = object_id('VOTELISTENTRY')
-            and   name  = 'VOTELISTSONGENTRY_FK'
+           where  id    = object_id('VOTELIST')
+            and   name  = 'TOP2000LISTVOTELIST_FK'
             and   indid > 0
             and   indid < 255)
-   drop index VOTELISTENTRY.VOTELISTSONGENTRY_FK
+   drop index VOTELIST.TOP2000LISTVOTELIST_FK
 go
 
 if exists (select 1
             from  sysindexes
-           where  id    = object_id('VOTELISTENTRY')
-            and   name  = 'LISTENERVOTELISTENTRY_FK'
+           where  id    = object_id('VOTELIST')
+            and   name  = 'VOTELISTOFLISTENER_FK'
             and   indid > 0
             and   indid < 255)
-   drop index VOTELISTENTRY.LISTENERVOTELISTENTRY_FK
-go
-
-if exists (select 1
-            from  sysindexes
-           where  id    = object_id('VOTELISTENTRY')
-            and   name  = 'TOP2000LISTVOTELISTENTRY_FK'
-            and   indid > 0
-            and   indid < 255)
-   drop index VOTELISTENTRY.TOP2000LISTVOTELISTENTRY_FK
+   drop index VOTELIST.VOTELISTOFLISTENER_FK
 go
 
 if exists (select 1
             from  sysobjects
-           where  id = object_id('VOTELISTENTRY')
+           where  id = object_id('VOTELIST')
             and   type = 'U')
-   drop table VOTELISTENTRY
+   drop table VOTELIST
 go
 
 /*==============================================================*/
@@ -676,7 +461,7 @@ go
 /*==============================================================*/
 create table ARTIST (
    ARTIST_NAME          nvarchar(255)        not null,
-   ARTIST_TYPE          varchar(255)         not null,
+   ARTIST_TYPE          nvarchar(255)        not null,
    constraint PK_ARTIST primary key nonclustered (ARTIST_NAME)
 )
 go
@@ -705,10 +490,9 @@ go
 /* Table: BANDMEMBERSHIP                                        */
 /*==============================================================*/
 create table BANDMEMBERSHIP (
+   BAND_ARTIST_NAME     nvarchar(255)        not null,
    ARTIST_NAME          nvarchar(255)        not null,
-   PERSON_NAME          nvarchar(255)        not null,
-   BAN_ARTIST_NAME      nvarchar(255)        not null,
-   constraint PK_BANDMEMBERSHIP primary key (ARTIST_NAME, PERSON_NAME, BAN_ARTIST_NAME)
+   constraint PK_BANDMEMBERSHIP primary key (BAND_ARTIST_NAME, ARTIST_NAME)
 )
 go
 
@@ -716,8 +500,7 @@ go
 /* Index: BANDMEMBERSHIP_FK                                     */
 /*==============================================================*/
 create index BANDMEMBERSHIP_FK on BANDMEMBERSHIP (
-ARTIST_NAME ASC,
-PERSON_NAME ASC
+BAND_ARTIST_NAME ASC
 )
 go
 
@@ -725,7 +508,7 @@ go
 /* Index: BANDMEMBERSHIP2_FK                                    */
 /*==============================================================*/
 create index BANDMEMBERSHIP2_FK on BANDMEMBERSHIP (
-BAN_ARTIST_NAME ASC
+ARTIST_NAME ASC
 )
 go
 
@@ -748,26 +531,13 @@ COUNTRY_CODE ASC
 go
 
 /*==============================================================*/
-/* Table: COMPOSER                                              */
-/*==============================================================*/
-create table COMPOSER (
-   ARTIST_NAME          nvarchar(255)        not null,
-   PERSON_NAME          nvarchar(255)        not null,
-   BIRTH_DAY            date                 null,
-   DEATH_YEAR           char(10)             null,
-   constraint PK_COMPOSER primary key (ARTIST_NAME, PERSON_NAME)
-)
-go
-
-/*==============================================================*/
 /* Table: COMPOSEROFSONG                                        */
 /*==============================================================*/
 create table COMPOSEROFSONG (
-   SON_ARTIST_NAME      nvarchar(255)        not null,
+   SONG_ARTIST_NAME     nvarchar(255)        not null,
    SONG_NAME            nvarchar(255)        not null,
    ARTIST_NAME          nvarchar(255)        not null,
-   PERSON_NAME          nvarchar(255)        not null,
-   constraint PK_COMPOSEROFSONG primary key (SON_ARTIST_NAME, SONG_NAME, ARTIST_NAME, PERSON_NAME)
+   constraint PK_COMPOSEROFSONG primary key (SONG_ARTIST_NAME, SONG_NAME, ARTIST_NAME)
 )
 go
 
@@ -775,7 +545,7 @@ go
 /* Index: COMPOSEROFSONG_FK                                     */
 /*==============================================================*/
 create index COMPOSEROFSONG_FK on COMPOSEROFSONG (
-SON_ARTIST_NAME ASC,
+SONG_ARTIST_NAME ASC,
 SONG_NAME ASC
 )
 go
@@ -784,8 +554,7 @@ go
 /* Index: COMPOSEROFSONG2_FK                                    */
 /*==============================================================*/
 create index COMPOSEROFSONG2_FK on COMPOSEROFSONG (
-ARTIST_NAME ASC,
-PERSON_NAME ASC
+ARTIST_NAME ASC
 )
 go
 
@@ -803,7 +572,7 @@ go
 /* Table: DJ                                                    */
 /*==============================================================*/
 create table DJ (
-   CODE                 char(3)              not null,
+   CODE                 nvarchar(255)        not null,
    FIRST_NAME           nvarchar(255)        not null,
    PREFIX               nvarchar(255)        null,
    LAST_NAME            nvarchar(255)        not null,
@@ -815,8 +584,8 @@ go
 /* Table: DJINYEAR                                              */
 /*==============================================================*/
 create table DJINYEAR (
-   CODE                 char(3)              not null,
-   EDITION_YEAR         INT                  not null,
+   CODE                 nvarchar(255)        not null,
+   EDITION_YEAR         int                  not null,
    START_DATETIME       datetime             not null,
    constraint PK_DJINYEAR primary key (CODE, EDITION_YEAR)
 )
@@ -842,10 +611,10 @@ go
 /* Table: FEATURINGARTISTOFSONG                                 */
 /*==============================================================*/
 create table FEATURINGARTISTOFSONG (
-   SON_ARTIST_NAME      nvarchar(255)        not null,
+   SONG_ARTIST_NAME     nvarchar(255)        not null,
    SONG_NAME            nvarchar(255)        not null,
    ARTIST_NAME          nvarchar(255)        not null,
-   constraint PK_FEATURINGARTISTOFSONG primary key (SON_ARTIST_NAME, SONG_NAME, ARTIST_NAME)
+   constraint PK_FEATURINGARTISTOFSONG primary key (SONG_ARTIST_NAME, SONG_NAME, ARTIST_NAME)
 )
 go
 
@@ -853,7 +622,7 @@ go
 /* Index: FEATURINGARTISTOFSONG_FK                              */
 /*==============================================================*/
 create index FEATURINGARTISTOFSONG_FK on FEATURINGARTISTOFSONG (
-SON_ARTIST_NAME ASC,
+SONG_ARTIST_NAME ASC,
 SONG_NAME ASC
 )
 go
@@ -912,8 +681,8 @@ create table LISTENER (
    FIRST_NAME           nvarchar(255)        not null,
    PREFIX               nvarchar(255)        null,
    LAST_NAME            nvarchar(255)        not null,
-   GENDER               varchar(255)         not null,
-   AGE_CATEGORY         varchar(255)         not null,
+   GENDER               nvarchar(255)        not null,
+   AGE_CATEGORY         nvarchar(255)        not null,
    constraint PK_LISTENER primary key nonclustered (EMAIL)
 )
 go
@@ -930,8 +699,36 @@ go
 /* Table: MUNICIPALITY                                          */
 /*==============================================================*/
 create table MUNICIPALITY (
-   MUNICIPALITY_CODE    nvarchar(255)        not null,
+   MUNICIPALITY_CODE    varchar(255)         not null,
    constraint PK_MUNICIPALITY primary key nonclustered (MUNICIPALITY_CODE)
+)
+go
+
+/*==============================================================*/
+/* Table: NOTSTANDARDSONGOFVOTELIST                             */
+/*==============================================================*/
+create table NOTSTANDARDSONGOFVOTELIST (
+   EMAIL                nvarchar(255)        not null,
+   EDITION_YEAR         int                  not null,
+   SONG_ID              int                  not null,
+   constraint PK_NOTSTANDARDSONGOFVOTELIST primary key (EMAIL, EDITION_YEAR, SONG_ID)
+)
+go
+
+/*==============================================================*/
+/* Index: NOTSTANDARDSONGOFVOTELIST_FK                          */
+/*==============================================================*/
+create index NOTSTANDARDSONGOFVOTELIST_FK on NOTSTANDARDSONGOFVOTELIST (
+EMAIL ASC,
+EDITION_YEAR ASC
+)
+go
+
+/*==============================================================*/
+/* Index: NOTSTANDARDSONGOFVOTELIST2_FK                         */
+/*==============================================================*/
+create index NOTSTANDARDSONGOFVOTELIST2_FK on NOTSTANDARDSONGOFVOTELIST (
+SONG_ID ASC
 )
 go
 
@@ -940,18 +737,10 @@ go
 /*==============================================================*/
 create table PERSON (
    ARTIST_NAME          nvarchar(255)        not null,
-   PERSON_NAME          nvarchar(255)        not null,
-   BIRTH_DAY            date                 null,
+   BIRTH_DATE           date                 not null,
    DEATH_YEAR           int                  null,
-   constraint PK_PERSON primary key nonclustered (ARTIST_NAME, PERSON_NAME)
-)
-go
-
-/*==============================================================*/
-/* Index: IS_A_ARTIST2_FK                                       */
-/*==============================================================*/
-create index IS_A_ARTIST2_FK on PERSON (
-ARTIST_NAME ASC
+   PERSON_NAME          nvarchar(255)        not null,
+   constraint PK_PERSON primary key (ARTIST_NAME)
 )
 go
 
@@ -959,7 +748,7 @@ go
 /* Table: PLACE                                                 */
 /*==============================================================*/
 create table PLACE (
-   PLACE_CODE           nvarchar(255)        not null,
+   PLACE_CODE           varchar(255)         not null,
    constraint PK_PLACE primary key nonclustered (PLACE_CODE)
 )
 go
@@ -969,8 +758,8 @@ go
 /*==============================================================*/
 create table POSTALCODE (
    POSTAL_CODE_NUMBERS  int                  not null,
-   MUNICIPALITY_CODE    nvarchar(255)        not null,
-   PLACE_CODE           nvarchar(255)        not null,
+   MUNICIPALITY_CODE    varchar(255)         not null,
+   PLACE_CODE           varchar(255)         not null,
    constraint PK_POSTALCODE primary key nonclustered (POSTAL_CODE_NUMBERS)
 )
 go
@@ -992,24 +781,12 @@ PLACE_CODE ASC
 go
 
 /*==============================================================*/
-/* Table: SOLOARTIST                                            */
-/*==============================================================*/
-create table SOLOARTIST (
-   ARTIST_NAME          nvarchar(255)        not null,
-   PERSON_NAME          nvarchar(255)        not null,
-   BIRTH_DAY            date                 null,
-   DEATH_YEAR           char(10)             null,
-   constraint PK_SOLOARTIST primary key (ARTIST_NAME, PERSON_NAME)
-)
-go
-
-/*==============================================================*/
 /* Table: SONG                                                  */
 /*==============================================================*/
 create table SONG (
    ARTIST_NAME          nvarchar(255)        not null,
    SONG_NAME            nvarchar(255)        not null,
-   DURATION             time(0)              null,
+   DURATION             datetime             null,
    RELEASE_YEAR         int                  null,
    constraint PK_SONG primary key nonclustered (ARTIST_NAME, SONG_NAME)
 )
@@ -1027,21 +804,40 @@ go
 /* Table: SONGNOTONSTANDARDLIST                                 */
 /*==============================================================*/
 create table SONGNOTONSTANDARDLIST (
-   ID                   int                  not null,
-   EDITION_YEAR         int                  null,
-   EMAIL                nvarchar(255)        null,
-   ASDSDEFS             nvarchar(255)        not null,
-   FS                   nvarchar(255)        not null,
-   constraint PK_SONGNOTONSTANDARDLIST primary key nonclustered (ID)
+   SONG_ID              int                  not null,
+   ARTIST_NAME_NOT_STANDARD nvarchar(255)        not null,
+   SONG_NAME_NOT_STANDARD nvarchar(255)        not null,
+   constraint PK_SONGNOTONSTANDARDLIST primary key nonclustered (SONG_ID)
 )
 go
 
 /*==============================================================*/
-/* Index: VOTELISTSONGNOTONSTANDARDLISTENTRY_FK                 */
+/* Table: SONGOFVOTE                                            */
 /*==============================================================*/
-create index VOTELISTSONGNOTONSTANDARDLISTENTRY_FK on SONGNOTONSTANDARDLIST (
-EDITION_YEAR ASC,
-EMAIL ASC
+create table SONGOFVOTE (
+   EMAIL                nvarchar(255)        not null,
+   EDITION_YEAR         int                  not null,
+   ARTIST_NAME          nvarchar(255)        not null,
+   SONG_NAME            nvarchar(255)        not null,
+   constraint PK_SONGOFVOTE primary key (EMAIL, EDITION_YEAR, ARTIST_NAME, SONG_NAME)
+)
+go
+
+/*==============================================================*/
+/* Index: SONGOFVOTE_FK                                         */
+/*==============================================================*/
+create index SONGOFVOTE_FK on SONGOFVOTE (
+EMAIL ASC,
+EDITION_YEAR ASC
+)
+go
+
+/*==============================================================*/
+/* Index: SONGOFVOTE2_FK                                        */
+/*==============================================================*/
+create index SONGOFVOTE2_FK on SONGOFVOTE (
+ARTIST_NAME ASC,
+SONG_NAME ASC
 )
 go
 
@@ -1052,7 +848,7 @@ create table SONGONCHART (
    ARTIST_NAME          nvarchar(255)        not null,
    SONG_NAME            nvarchar(255)        not null,
    CHART_NAME           nvarchar(255)        not null,
-   DURATION             int                  not null,
+   DURATION             datetime             not null,
    SEDFESFSEFSEF        int                  not null,
    constraint PK_SONGONCHART primary key (ARTIST_NAME, SONG_NAME, CHART_NAME)
 )
@@ -1080,8 +876,8 @@ go
 /*==============================================================*/
 create table SONGONTOP10LIST (
    ARTIST_NAME          nvarchar(255)        not null,
-   SONG_NAME            nvarchar(255)        not null,
-   MUNICIPALITY_CODE    nvarchar(255)        not null,
+   SONG_NAME            nvarchar(255)         not null,
+   MUNICIPALITY_CODE    varchar(255)         not null,
    EDITION_YEAR         int                  not null,
    GDFDFRGDGDG          int                  not null,
    constraint PK_SONGONTOP10LIST primary key (ARTIST_NAME, SONG_NAME, MUNICIPALITY_CODE, EDITION_YEAR)
@@ -1110,7 +906,7 @@ go
 /* Table: TOP10LIST                                             */
 /*==============================================================*/
 create table TOP10LIST (
-   MUNICIPALITY_CODE    nvarchar(255)        not null,
+   MUNICIPALITY_CODE    varchar(255)         not null,
    EDITION_YEAR         int                  not null,
    constraint PK_TOP10LIST primary key (MUNICIPALITY_CODE, EDITION_YEAR)
 )
@@ -1172,229 +968,28 @@ EDITION_YEAR ASC
 go
 
 /*==============================================================*/
-/* Table: VOTELISTENTRY                                         */
+/* Table: VOTELIST                                              */
 /*==============================================================*/
-create table VOTELISTENTRY (
-   EDITION_YEAR         int                  not null,
+create table VOTELIST (
    EMAIL                nvarchar(255)        not null,
-   ARTIST_NAME          nvarchar(255)        not null,
-   SONG_NAME            nvarchar(255)        not null,
-   constraint PK_VOTELISTENTRY primary key (EDITION_YEAR, EMAIL)
+   EDITION_YEAR         nvarchar(255)        not null,
+   constraint PK_VOTELIST primary key (EMAIL, EDITION_YEAR)
 )
 go
 
 /*==============================================================*/
-/* Index: TOP2000LISTVOTELISTENTRY_FK                           */
+/* Index: VOTELISTOFLISTENER_FK                                 */
 /*==============================================================*/
-create index TOP2000LISTVOTELISTENTRY_FK on VOTELISTENTRY (
-EDITION_YEAR ASC
-)
-go
-
-/*==============================================================*/
-/* Index: LISTENERVOTELISTENTRY_FK                              */
-/*==============================================================*/
-create index LISTENERVOTELISTENTRY_FK on VOTELISTENTRY (
+create index VOTELISTOFLISTENER_FK on VOTELIST (
 EMAIL ASC
 )
 go
 
 /*==============================================================*/
-/* Index: VOTELISTSONGENTRY_FK                                  */
+/* Index: TOP2000LISTVOTELIST_FK                                */
 /*==============================================================*/
-create index VOTELISTSONGENTRY_FK on VOTELISTENTRY (
-ARTIST_NAME ASC,
-SONG_NAME ASC
+create index TOP2000LISTVOTELIST_FK on VOTELIST (
+EDITION_YEAR ASC
 )
-go
-
-alter table BAND
-   add constraint FK_BAND_BANDCOUNT_COUNTRY foreign key (COUNTRY_CODE)
-      references COUNTRY (COUNTRY_CODE)
-         on update cascade
-go
-
-alter table BAND
-   add constraint FK_BAND_IS_A_ARTI_ARTIST foreign key (ARTIST_NAME)
-      references ARTIST (ARTIST_NAME)
-         on update cascade
-go
-
-alter table BANDMEMBERSHIP
-   add constraint FK_BANDMEMB_BANDMEMBE_SOLOARTI foreign key (ARTIST_NAME, PERSON_NAME)
-      references SOLOARTIST (ARTIST_NAME, PERSON_NAME)
-         on update cascade
-go
-
-alter table BANDMEMBERSHIP
-   add constraint FK_BANDMEMB_BANDMEMBE_BAND foreign key (BAN_ARTIST_NAME)
-      references BAND (ARTIST_NAME)
-         on update cascade
-go
-
-alter table CHART
-   add constraint FK_CHART_COUNTRYOF_COUNTRY foreign key (COUNTRY_CODE)
-      references COUNTRY (COUNTRY_CODE)
-         on update cascade
-go
-
-alter table COMPOSER
-   add constraint FK_COMPOSER_IS_A_PERS_PERSON foreign key (ARTIST_NAME, PERSON_NAME)
-      references PERSON (ARTIST_NAME, PERSON_NAME)
-         on update cascade
-go
-
-alter table COMPOSEROFSONG
-   add constraint FK_COMPOSER_COMPOSERO_SONG foreign key (SON_ARTIST_NAME, SONG_NAME)
-      references SONG (ARTIST_NAME, SONG_NAME)
-         on update cascade
-go
-
-alter table COMPOSEROFSONG
-   add constraint FK_COMPOSER_COMPOSERO_COMPOSER foreign key (ARTIST_NAME, PERSON_NAME)
-      references COMPOSER (ARTIST_NAME, PERSON_NAME)
-         on update cascade
-go
-
-alter table DJINYEAR
-   add constraint FK_DJINYEAR_DJOFDJINY_DJ foreign key (CODE)
-      references DJ (CODE)
-         on update cascade
-go
-
-alter table DJINYEAR
-   add constraint FK_DJINYEAR_DJOFTOP20_TOP2000L foreign key (EDITION_YEAR)
-      references TOP2000LIST (EDITION_YEAR)
-         on update cascade
-go
-
-alter table FEATURINGARTISTOFSONG
-   add constraint FK_FEATURIN_FEATURING_SONG foreign key (SON_ARTIST_NAME, SONG_NAME)
-      references SONG (ARTIST_NAME, SONG_NAME)
-         on update cascade
-go
-
-alter table FEATURINGARTISTOFSONG
-   add constraint FK_FEATURIN_FEATURING_ARTIST foreign key (ARTIST_NAME)
-      references ARTIST (ARTIST_NAME)
-         on update cascade
-go
-
-alter table GENREOFSONG
-   add constraint FK_GENREOFS_GENREOFSO_GENRE foreign key (GENRE_NAME)
-      references GENRE (GENRE_NAME)
-         on update cascade
-go
-
-alter table GENREOFSONG
-   add constraint FK_GENREOFS_GENREOFSO_SONG foreign key (ARTIST_NAME, SONG_NAME)
-      references SONG (ARTIST_NAME, SONG_NAME)
-         on update cascade
-go
-
-alter table LISTENER
-   add constraint FK_LISTENER_POSTALCOD_POSTALCO foreign key (POSTAL_CODE_NUMBERS)
-      references POSTALCODE (POSTAL_CODE_NUMBERS)
-         on update cascade
-go
-
-alter table PERSON
-   add constraint FK_PERSON_IS_A_ARTI_ARTIST foreign key (ARTIST_NAME)
-      references ARTIST (ARTIST_NAME)
-         on update cascade
-go
-
-alter table POSTALCODE
-   add constraint FK_POSTALCO_POSTALCOD_MUNICIPA foreign key (MUNICIPALITY_CODE)
-      references MUNICIPALITY (MUNICIPALITY_CODE)
-         on update cascade
-go
-
-alter table POSTALCODE
-   add constraint FK_POSTALCO_POSTALCOD_PLACE foreign key (PLACE_CODE)
-      references PLACE (PLACE_CODE)
-         on update cascade
-go
-
-alter table SOLOARTIST
-   add constraint FK_SOLOARTI_IS_A_PERS_PERSON foreign key (ARTIST_NAME, PERSON_NAME)
-      references PERSON (ARTIST_NAME, PERSON_NAME)
-go
-
-alter table SONG
-   add constraint FK_SONG_SONGOFART_ARTIST foreign key (ARTIST_NAME)
-      references ARTIST (ARTIST_NAME)
-go
-
-alter table SONGNOTONSTANDARDLIST
-   add constraint FK_SONGNOTO_VOTELISTS_VOTELIST foreign key (EDITION_YEAR, EMAIL)
-      references VOTELISTENTRY (EDITION_YEAR, EMAIL)
-         on update cascade
-go
-
-alter table SONGONCHART
-   add constraint FK_SONGONCH_CHARTOFSO_CHART foreign key (CHART_NAME)
-      references CHART (CHART_NAME)
-         on update cascade
-go
-
-alter table SONGONCHART
-   add constraint FK_SONGONCH_SONGOFSON_SONG foreign key (ARTIST_NAME, SONG_NAME)
-      references SONG (ARTIST_NAME, SONG_NAME)
-         on update cascade
-go
-
-alter table SONGONTOP10LIST
-   add constraint FK_SONGONTO_SONGOFSON_SONG foreign key (ARTIST_NAME, SONG_NAME)
-      references SONG (ARTIST_NAME, SONG_NAME)
-         on update cascade
-go
-
-alter table SONGONTOP10LIST
-   add constraint FK_SONGONTO_TOP10LIST_TOP10LIS foreign key (MUNICIPALITY_CODE, EDITION_YEAR)
-      references TOP10LIST (MUNICIPALITY_CODE, EDITION_YEAR)
-         on update cascade
-go
-
-alter table TOP10LIST
-   add constraint FK_TOP10LIS_MUNICIPAL_MUNICIPA foreign key (MUNICIPALITY_CODE)
-      references MUNICIPALITY (MUNICIPALITY_CODE)
-         on update cascade
-go
-
-alter table TOP10LIST
-   add constraint FK_TOP10LIS_TOP2000LI_TOP2000L foreign key (EDITION_YEAR)
-      references TOP2000LIST (EDITION_YEAR)
-         on update cascade
-go
-
-alter table TOP2000LISTENTRY
-   add constraint FK_TOP2000L_EDITIONOF_TOP2000L foreign key (EDITION_YEAR)
-      references TOP2000LIST (EDITION_YEAR)
-         on update cascade
-go
-
-alter table TOP2000LISTENTRY
-   add constraint FK_TOP2000L_SONGOFTOP_SONG foreign key (ARTIST_NAME, SONG_NAME)
-      references SONG (ARTIST_NAME, SONG_NAME)
-         on update cascade
-go
-
-alter table VOTELISTENTRY
-   add constraint FK_VOTELIST_LISTENERV_LISTENER foreign key (EMAIL)
-      references LISTENER (EMAIL)
-         on update cascade
-go
-
-alter table VOTELISTENTRY
-   add constraint FK_VOTELIST_TOP2000LI_TOP2000L foreign key (EDITION_YEAR)
-      references TOP2000LIST (EDITION_YEAR)
-         on update cascade
-go
-
-alter table VOTELISTENTRY
-   add constraint FK_VOTELIST_VOTELISTS_SONG foreign key (ARTIST_NAME, SONG_NAME)
-      references SONG (ARTIST_NAME, SONG_NAME)
-         on update cascade
 go
 

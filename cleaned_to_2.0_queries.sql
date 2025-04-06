@@ -64,4 +64,3 @@ JOIN (
 	INNER JOIN Top2000_cleaned.dbo.ampersand_artists as ampersand_artists ON ampersand_artists.artist_name = ARTIST.ARTIST_NAME
 ) sub ON A.ARTIST_NAME = sub.artist_name AND A.ARTIST_TYPE = sub.ARTIST_TYPE
 GO
-
