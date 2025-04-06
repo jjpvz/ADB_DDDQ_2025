@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2014                    */
-/* Created on:     6-4-2025 13:58:43                            */
+/* Created on:     6-4-2025 14:03:50                            */
 /*==============================================================*/
 
 
@@ -1103,7 +1103,7 @@ go
 create table SONGONTOP10LIST (
    ARTIST_NAME          nvarchar(255)        not null,
    SONG_NAME            nvarchar(255)        not null,
-   MUNICIPALITY_CODE    varchar(255)         not null,
+   MUNICIPALITY_CODE    nvarchar(255)        not null,
    EDITION_YEAR         int                  not null,
    GDFDFRGDGDG          int                  not null,
    constraint PK_SONGONTOP10LIST primary key (ARTIST_NAME, SONG_NAME, MUNICIPALITY_CODE, EDITION_YEAR)
@@ -1210,7 +1210,7 @@ go
 /*==============================================================*/
 create table VOTELIST (
    EMAIL                nvarchar(255)        not null,
-   EDITION_YEAR         nvarchar(255)        not null,
+   EDITION_YEAR         int                  not null,
    constraint PK_VOTELIST primary key (EMAIL, EDITION_YEAR)
 )
 go
