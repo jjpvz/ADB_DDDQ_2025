@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2008                    */
-/* Created on:     06/04/2025 11:10:28                          */
+/* Created on:     06/04/2025 11:22:11                          */
 /*==============================================================*/
 
 
@@ -786,7 +786,7 @@ go
 create table SONG (
    ARTIST_NAME          nvarchar(255)        not null,
    SONG_NAME            nvarchar(255)        not null,
-   DURATION             datetime             null,
+   DURATION             time(0)              null,
    RELEASE_YEAR         int                  null,
    constraint PK_SONG primary key nonclustered (ARTIST_NAME, SONG_NAME)
 )
@@ -848,7 +848,7 @@ create table SONGONCHART (
    ARTIST_NAME          nvarchar(255)        not null,
    SONG_NAME            nvarchar(255)        not null,
    CHART_NAME           nvarchar(255)        not null,
-   DURATION             datetime             not null,
+   DURATION             int                  not null,
    SEDFESFSEFSEF        int                  not null,
    constraint PK_SONGONCHART primary key (ARTIST_NAME, SONG_NAME, CHART_NAME)
 )
@@ -876,7 +876,7 @@ go
 /*==============================================================*/
 create table SONGONTOP10LIST (
    ARTIST_NAME          nvarchar(255)        not null,
-   SONG_NAME            nvarchar(255)         not null,
+   SONG_NAME            nvarchar(255)        not null,
    MUNICIPALITY_CODE    varchar(255)         not null,
    EDITION_YEAR         int                  not null,
    GDFDFRGDGDG          int                  not null,
