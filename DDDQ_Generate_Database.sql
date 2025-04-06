@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2014                    */
-/* Created on:     6-4-2025 14:03:50                            */
+/* Created on:     6-4-2025 14:06:07                            */
 /*==============================================================*/
 
 
@@ -926,7 +926,7 @@ go
 /* Table: MUNICIPALITY                                          */
 /*==============================================================*/
 create table MUNICIPALITY (
-   MUNICIPALITY_CODE    nvarchar(255)        not null,
+   MUNICIPALITY_CODE    varchar(255)         not null,
    constraint PK_MUNICIPALITY primary key (MUNICIPALITY_CODE)
 )
 go
